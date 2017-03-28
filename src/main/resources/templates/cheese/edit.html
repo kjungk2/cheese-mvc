@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head"></head>
+<body class="container body-content">
+<!--<h1 th:text="${title}">Default Title</h1>-->
+<h1 th:text="'Edit ' + ${cheese.name} + ' (id = ' + ${cheese.cheeseId} + ')'">Default Edit</h1>
+
+<nav th:replace="fragments :: navigation"></nav>
+
+
+<form method="post" style="max-width:600px;" th:object="${cheese}">
+    <div class="form-group">
+        <label th:for="name">Name</label>
+        <input class="form-control" th:field="*{name}" />
+        <span th:errors="*{name}" class="error"></span>
+    </div>
+
+    <div class="form-group">
+        <label th:for="description">Description</label>
+        <input class="form-control" th:field="*{description}" />
+        <span th:errors="*{description}" class="error"></span>
+    </div>
+
+    <div class="form-group">
+        <label th:for="type">Type</label>
+        <select th:field="*{type}">
+            <option th:each="cheeseType : ${cheeseTypes}"
+                    th:text="${cheeseType.name}"
+                    th:value="${cheeseType}"></option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label th:for="rating">Rating (Enter 1-5 *'s)</label>
+        <input class="form-control" th:field="*{rating}" />
+        <span th:errors="*{rating}" class="error"></span>
+    </div>
+
+    <input type="hidden" th:field="*{cheeseId}"/>
+
+    <input type="submit" value="Update Cheese" />
+</form>
+
+</body>
+</html>
+
+
+
+<!--<!DOCTYPE html>-->
+<!--<html lang="en" xmlns:th="http://www.thymeleaf.org/">-->
+<!--<head th:replace="fragments :: head"></head>-->
+<!--<body class="container body-content">-->
+<!--<h1 th:text="${title}">Default Title</h1>-->
+<!--&lt;!&ndash;<h1 th:text="'Edit ' + ${cheeseToEdit.name} + ' (id = ' + ${cheeseToEdit.cheeseId} + ')'">Default Edit</h1>&ndash;&gt;-->
+
+<!--<nav th:replace="fragments :: navigation"></nav>-->
+
+<!--<form method="post" style="max-width:600px;" th:object="${cheeseToEdit}">-->
+    <!--<div class="form-group">-->
+        <!--&lt;!&ndash;<label for="name-field">New Name</label>&ndash;&gt;-->
+        <!--<label th:for="name">New Name</label>-->
+        <!--&lt;!&ndash;<input class="form-control" id="name-field" type="text" th:value="${cheeseToEdit.getName()}" name="name" />&ndash;&gt;-->
+        <!--<input class="form-control" th:field="*{name}" />-->
+        <!--<span th:errors="*{name}" class="error"></span>-->
+    <!--</div>-->
+
+    <!--&lt;!&ndash;<div th:if="${error}">&ndash;&gt;-->
+        <!--&lt;!&ndash;<p th:text="${error}">Error!</p>&ndash;&gt;-->
+    <!--&lt;!&ndash;</div>&ndash;&gt;-->
+
+    <!--<div class="form-group">-->
+        <!--<label th:for="description">New Description</label>-->
+        <!--&lt;!&ndash;<input class="form-control" id="desc-field" type="text" th:value="${cheeseToEdit.getDescription()}" name="description" />&ndash;&gt;-->
+        <!--<input class="form-control" th:field="*{description}" />-->
+        <!--<span th:errors="*{description}" class="error"></span>-->
+    <!--</div>-->
+
+    <!--<div class="form-group">-->
+        <!--<label th:for="type">Type</label>-->
+        <!--<select th:field="*{type}">-->
+            <!--<option th:each="cheeseType : ${cheeseTypes}"-->
+                    <!--th:text="${cheeseType.name}"-->
+                    <!--th:value="${cheeseType}"></option>-->
+            <!--&lt;!&ndash;TODO: Pre-select the specific optin that is already stored on the object, looks to already be working?&ndash;&gt;-->
+        <!--</select>-->
+
+    <!--</div>-->
+
+    <!--<input type="submit" value="Edit Cheese" />-->
+    <!--<input type="hidden" th:field="*{cheeseId}"/>-->
+<!--</form>-->
+
+<!--</body>-->
+<!--</html>-->
